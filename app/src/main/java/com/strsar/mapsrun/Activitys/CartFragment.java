@@ -1,0 +1,197 @@
+package com.strsar.mapsrun.Activitys;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.strsar.mapsrun.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.strsar.mapsrun.Activitys.SearchFragment.display_current_location;
+
+public class CartFragment extends Fragment {
+    RecyclerView orders;
+    ArrayList<CardModel> orderModels;
+    CardAdopter ordersAdapter;
+    GridLayoutManager gridLayoutManager;
+    String seller_lat,seller_log,user_log,user_lat,book_id,order_paymentid;
+    String sellers,users;
+    String lattitude,longitude,Range;
+    SharedPreferences sharedPreferences,sharedPreferences1;
+    String id,complete_date;
+    CustomProgressDialog progressdialog;
+    TextView no_data_details;
+    String order_prepaed;
+    private Handler handler;
+    private Runnable handlerTask;
+    String complete_address;
+    Date currentTime;
+    String newDateStr,time,time1;
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
+    public CartFragment() {
+    }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.fragment_cart, container, false);
+        orders=view.findViewById(R.id.orders);
+        no_data_details=view.findViewById(R.id.no_data_details);
+        mSwipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipeToRefresh);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+
+        sharedPreferences=getActivity().getSharedPreferences("logindetails", Context.MODE_PRIVATE);
+        id=sharedPreferences.getString("deliboy_id",null);
+      //  complete_date=sharedPreferences.getString("complete_date",null);
+
+
+        sharedPreferences1=getActivity().getSharedPreferences("complete_address", Context.MODE_PRIVATE);
+        complete_address=sharedPreferences.getString("complete_address",null);
+
+
+
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat postFormater = new SimpleDateFormat("yyyy-MM-dd");
+
+        newDateStr = postFormater.format(c);
+        currentTime = Calendar.getInstance().getTime();
+        time=String.valueOf(currentTime);
+        time1=time.substring(11,19);
+        complete_date=newDateStr+" "+time1;
+
+
+        Toast.makeText(getContext(), "cx"+complete_date, Toast.LENGTH_SHORT).show();
+
+
+
+        progressdialog = new CustomProgressDialog(getContext());
+        progressdialog.show();
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getserverData();
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+        getserverData();
+         return view;
+    }
+
+  /*  void StartTimer(){
+        handler = new Handler();
+        handlerTask = new Runnable()
+        {
+            @Override
+            public void run() {
+                // do something
+                getserverData();
+
+                handler.postDelayed(handlerTask, 5000);
+            }
+        };
+        handlerTask.run();
+    }*/
+    public void getserverData(){
+
+        RequestQueue rq = Volley.newRequestQueue(getContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "https://mezotint.com/api/deliveryboyaddress",
+                new Response.Listener<String>() {
+
+                    public void onResponse(String response) {
+                        System.out.println("response_get_magsine"+response);
+
+                        try {
+
+                            gridLayoutManager=new GridLayoutManager(getActivity(),1);
+                            orders.setLayoutManager(gridLayoutManager);
+                            orderModels=new ArrayList<>();
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            String status=jsonObject.getString("status");
+                            if(status.equals("400")) {
+
+
+
+                                JSONArray jsonArray = jsonObject.getJSONArray("data");
+
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                    book_id = jsonObject1.optString("book_id");
+                                    order_paymentid = jsonObject1.optString("order_paymentid");
+                                    sellers = jsonObject1.optString("sellers");
+                                    users = jsonObject1.optString("users");
+                                    seller_lat = jsonObject1.optString("seller_lat");
+                                    seller_log = jsonObject1.optString("seller_log");
+                                    user_lat = jsonObject1.optString("user_lat");
+                                    user_log = jsonObject1.optString("user_log");
+                                    order_prepaed=jsonObject1.optString("order_prepaed");
+                                    System.out.println("response_get_magsine1111" + sellers);
+
+                                    orderModels.add(new CardModel(book_id, "" + sellers, "" + users, "" + seller_lat, "" + seller_log, "" + user_lat, "" + user_log, book_id, order_paymentid,order_prepaed));
+                                }
+                                System.out.println("get_size" + orderModels.size());
+                                ordersAdapter = new CardAdopter(getActivity(), orderModels, id,complete_date);
+                                orders.setAdapter(ordersAdapter);
+                                progressdialog.dismiss();
+                                no_data_details.setVisibility(View.GONE);
+                                orders.setVisibility(View.VISIBLE);
+                            }else {
+                                orders.setVisibility(View.GONE);
+                                no_data_details.setVisibility(View.VISIBLE);
+                                no_data_details.setText("No Orders Available");
+                                progressdialog.dismiss();
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    };
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError arg0) {
+                // TODO Auto-generated method stub
+                //   pd.hide();
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("address",complete_address);
+                 params.put("rang","15");
+
+                return params;
+            }
+        };
+        rq.add(stringRequest);
+    }
+}
+

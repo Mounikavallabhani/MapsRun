@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="3dp"
+    app:cardCornerRadius="3dp"
+    android:layout_marginRight="3dp"
+    android:layout_marginLeft="3dp"
+    android:layout_marginTop="3dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="#000"
+                    android:fontFamily="sans-serif"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order Id:"/>
+                <TextView
+                    android:textColor="#000"
+                    android:id="@+id/orderid"
+                    android:fontFamily="sans-serif"
+                    android:textSize="18dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10011"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right|center"
+                    android:layout_marginRight="30dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/booking_id"
+                        android:gravity="center|center"
+                        android:textColor="#fff"
+                        android:background="@drawable/booking_id_background"
+                        android:text="Book Id Here"
+                        android:layout_width="140dp"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linear_bill_amount"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="#000"
+                    android:fontFamily="sans-serif"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delivery Amount :"/>
+
+                <TextView
+                    android:id="@+id/bill_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="sans-serif"
+                    android:text="10011"
+                    android:textColor="#000"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="#000"
+                        android:fontFamily="sans-serif"
+                        android:textSize="18dp"
+                        android:gravity="left|center"
+                        android:text="From :"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:textColor="#000"
+                        android:id="@+id/fromtext"
+                        android:layout_marginTop="10dp"
+                        android:textSize="13dp"
+                        android:gravity="left|center"
+                        android:text="Shop No 143,Bala Nagar."
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_marginTop="1dp"
+                            android:id="@+id/call_image"
+                            android:gravity="center|center"
+                            android:src="@drawable/ic_call_order_accept"
+                            android:layout_width="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                        android:textColor="#000"
+                        android:id="@+id/seller_phone_number"
+                        android:textSize="13dp"
+                        android:gravity="center|center"
+                        android:text="Hyd TS_23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="#000"
+                        android:fontFamily="sans-serif"
+                        android:textSize="18dp"
+                        android:gravity="left|center"
+                        android:text="To :"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:textColor="#000"
+                        android:id="@+id/totext"
+                        android:layout_marginTop="10dp"
+                        android:textSize="13dp"
+                        android:gravity="left|center"
+                        android:text="Shop No 143,Bala Nagar."
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_marginTop="2dp"
+                            android:id="@+id/to_call_image"
+                            android:gravity="center|center"
+                            android:src="@drawable/ic_call_order_accept"
+                            android:layout_width="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:textColor="#000"
+                            android:id="@+id/celler_phone_number"
+
+                            android:textSize="13dp"
+                            android:gravity="left|center"
+                            android:text="Hyd TS_23"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_weight="3"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/delivery_status"
+                    android:layout_margin="10dp"
+                    android:layout_weight="0.8"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:background="@drawable/acceptbackground"
+                    android:text=""
+                    android:layout_width="0dp"
+                    android:layout_height="35dp" />
+                <TextView
+                    android:id="@+id/view_orders"
+                    android:layout_margin="10dp"
+                    android:layout_weight="0.8"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:background="@drawable/viewbackground"
+                    android:text="View"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

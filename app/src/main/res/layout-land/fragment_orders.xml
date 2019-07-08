@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_height="80dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="7"
+                    android:layout_height="80dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/mezotint">
+                </ImageView>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:weightSum="1"
+                android:gravity="center|center"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:fontFamily="monospace"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center|end"
+                    android:layout_marginRight="20dp"
+                    android:text="From date :"
+                    android:textSize="18dp" />
+                <LinearLayout
+                    android:id="@+id/startdate"
+                    android:background="@drawable/textshape"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/cal16"
+                        android:gravity="center|right"
+                        android:layout_height="20dp" />
+                    <TextView
+                        android:id="@+id/startdatetext"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:hint="YYYY-MM-DD"
+                        android:gravity="left|center"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:weightSum="1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="top"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|end"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="0.4"
+                    android:text="To date :"
+                    android:textSize="18dp" />
+
+                <LinearLayout
+                    android:id="@+id/enddate"
+                    android:background="@drawable/textshape"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:weightSum="3"
+                    android:layout_height="40dp">
+
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/cal16"
+                        android:gravity="right|center"
+                        android:layout_height="20dp" />
+                    <TextView
+                        android:id="@+id/enddatetext"
+
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:hint="YYYY-MM-DD"
+                        android:gravity="left|center"
+                        android:textSize="16dp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/l1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/deliveryboy"
+                    android:nestedScrollingEnabled="true">
+
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/l2"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:textSize="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" No Orders"/>
+            </LinearLayout>
+
+
+            <!-- <LinearLayout
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+            android:orientation="vertical"
+            android:layout_margin="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+            android:textColor="#000"
+            android:fontFamily="sans-serif"
+            android:textSize="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order Id:"/>
+            <TextView
+            android:textColor="#000"
+            android:id="@+id/orderid"
+            android:fontFamily="sans-serif"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10011"/>
+            </LinearLayout>
+
+            <LinearLayout
+            android:layout_marginTop="10dp"
+            android:weightSum="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content">
+            <TextView
+            android:textColor="#000"
+            android:fontFamily="sans-serif"
+            android:textSize="18dp"
+            android:gravity="left|center"
+            android:text="From :"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+            <TextView
+            android:textColor="#000"
+            android:id="@+id/fromtext"
+            android:layout_marginTop="10dp"
+            android:textSize="13dp"
+            android:gravity="left|center"
+            android:text="Shop No 143,Bala Nagar."
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+            <TextView
+            android:textColor="#000"
+            android:id="@+id/fromtext1"
+            android:layout_marginTop="10dp"
+            android:textSize="13dp"
+            android:gravity="left|center"
+            android:text="Hyd TS_23"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+            </LinearLayout>
+            <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <TextView
+            android:textColor="#000"
+            android:fontFamily="sans-serif"
+            android:textSize="18dp"
+            android:gravity="left|center"
+            android:text="To :"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+            <TextView
+            android:textColor="#000"
+            android:id="@+id/totext"
+            android:layout_marginTop="10dp"
+            android:textSize="13dp"
+            android:gravity="left|center"
+            android:text="Shop No 143,Bala Nagar."
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+            <TextView
+            android:textColor="#000"
+            android:id="@+id/totext1"
+            android:layout_marginTop="10dp"
+            android:textSize="13dp"
+            android:gravity="left|center"
+            android:text="Hyd TS_23"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+            </LinearLayout>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+
+            android:layout_margin="10dp"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:visibility="invisible"
+            android:layout_width="0dp"
+            android:layout_height="35dp" />
+            <TextView
+            android:layout_margin="10dp"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:visibility="invisible"
+            android:layout_width="0dp"
+            android:layout_height="35dp" />
+            <TextView
+            android:layout_margin="10dp"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:background="@drawable/border_shape"
+            android:text="Delivered"
+            android:layout_width="0dp"
+            android:layout_height="35dp" />
+            </LinearLayout>
+
+            </LinearLayout>
+            </LinearLayout>-->
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+</FrameLayout>
